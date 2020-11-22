@@ -5,7 +5,7 @@ from .forms import CityForm
 
 # Create your views here.
 def index(request):
-  url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=7bc950073cb91e06b08839b074935966'
+  url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=7bc950073cb91e06b08839b074935966'
   
   err_msg = ''
   message = ''
@@ -44,7 +44,7 @@ def index(request):
     r = requests.get(url.format(city)).json()
     city_weather = {
       'city': city.name,
-      'temperature': round((r['main']['temp']-32)*0.55,2),
+      'temperature': round((r['main']['temp'])), 
       'description': r['weather'][0]['description'],
       'icon':r['weather'][0]['icon'],
     }
